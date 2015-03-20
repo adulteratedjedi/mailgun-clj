@@ -24,12 +24,16 @@
 
 (defn api-url
   [endpoint]
-  (format "%s/%s/%s" (:api-base endpoints) (:api-key config/domain) endpoint))
+  (format "%s/%s/%s" (:api-base endpoints) (:domain config/credentials) endpoint))
 
 (defn domain-api-url
   [endpoint]
-  (format "%s/domains/%s/%s" (:api-base endpoints) (:api-key config/domain) endpoint))
+  (format "%s/domains/%s/%s" (:api-base endpoints) (:domain config/credentials) endpoint))
 
 (defn public-api-url
   [endpoint]
   (format "%s/%s" (:api-base endpoints) endpoint))
+
+(defn credentials-url
+  [id]
+  (domain-api-url (format "%s/%s" (:credentials-endpoint endpoints) id)))
